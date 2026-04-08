@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Conta | UltraForce</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-page">
+<a href="#form-cadastro" class="skip-link">Ir para o formulário de cadastro</a>
+    <div class="auth-container">
+        <div class="auth-logo">
+            <a href="index.html"><h1>ULTRAFORCE</h1></a>
+        </div>
+        
+        <div class="auth-box">
+            <h2>Crie sua conta</h2>
+            
+            <div class="social-login">
+                <button class="btn-social google">[ ÍCONE GOOGLE ] Continuar com Google</button>
+                <button class="btn-social apple">[ ÍCONE APPLE ] Continuar com Apple</button>
+            </div>
+
+            <div class="divider"><span>ou cadastre com e-mail</span></div>
+
+            <form id="form-cadastro" novalidate>
+                <div class="input-group">
+                    <label for="nome">Nome Completo</label>
+                    <input type="text" id="nome" name="nome" required autocomplete="name" aria-required="true">
+                </div>
+                <div class="input-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required autocomplete="email" aria-required="true">
+                </div>
+                <div class="input-group">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" name="password" required autocomplete="new-password" aria-required="true" aria-describedby="senha-hint">
+                    <small id="senha-hint" style="color: var(--text-muted); font-size: 0.8rem; margin-top: 4px; display: block;">Mínimo de 8 caracteres.</small>
+                </div>
+                <button type="button" class="btn-buy btn-large" onclick="window.location.href='login.html'">CRIAR CONTA</button>
+            </form>
+            
+            <p class="auth-footer">Já tem uma conta? <a href="login.html">Faça login</a></p>
+        </div>
+    </div>
+</body>
+</html>

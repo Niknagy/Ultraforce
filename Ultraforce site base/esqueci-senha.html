@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Recuperar Senha | UltraForce</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-page">
+    <div class="auth-container">
+        <div class="auth-box">
+            <h2>Recuperar Senha</h2>
+            <p style="text-align: center; color: var(--text-muted); margin-bottom: 20px; font-size: 0.9rem;">Enviaremos um link de recuperação para o seu e-mail.</p>
+            <form>
+                <div class="input-group">
+                    <label for="email-recuperacao">E-mail cadastrado</label>
+                    <input type="email" id="email-recuperacao" name="email" required placeholder="exemplo@gmail.com" autocomplete="email" aria-required="true" aria-describedby="email-hint">
+                    <small id="email-hint" style="color: var(--text-muted); font-size: 0.8rem;">Enviaremos o link para este endereço.</small>
+                </div>
+                <button type="button" class="btn-buy btn-large" onclick="alert('Link de recuperação enviado com sucesso! Verifique sua caixa de entrada.')">ENVIAR LINK</button>
+            </form>
+            <p class="auth-footer"><a href="login.html">← Voltar para o Login</a></p>
+        </div>
+    </div>
+</body>
+</html>
