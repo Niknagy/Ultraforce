@@ -263,4 +263,62 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (tabs.length > 0) activateTab(tabs[0]);
     }
+
+    // =========================================
+    // 10. GALERIA DE IMAGENS DO PRODUTO (UX)
+    // =========================================
+    const mainImage = document.getElementById('imagem-principal');
+    const thumbnails = document.querySelectorAll('.thumb img');
+
+    if (mainImage && thumbnails.length > 0) {
+        thumbnails.forEach(thumb => {
+            thumb.addEventListener('click', function() {
+                // 1. Troca a imagem principal pelo link da miniatura clicada
+                mainImage.src = this.src;
+                
+                // 2. Remove a borda verde de todas as miniaturas
+                thumbnails.forEach(t => t.parentElement.style.borderColor = 'var(--border-color)');
+                
+                // 3. Coloca a borda verde na miniatura que foi clicada agora
+                this.parentElement.style.borderColor = 'var(--primary-color)';
+            });
+        });
+    }
+
+    // =========================================
+    // 11. LUPA DE ZOOM (Estilo Amazon)
+    // =========================================
+    const containerZoom = document.getElementById('img-container');
+    const imgZoom = document.getElementById('imagem-principal');
+    const resultZoom = document.getElementById('zoom-result');
+
+    if (containerZoom && imgZoom && resultZoom) {
+        containerZoom.addEventListener('mousemove', function(e) {
+            // Mostra a janelinha
+            resultZoom.style.display = 'block';
+
+            // Pega a posição do quadrado da imagem na tela
+            const rect = containerZoom.getBoundingClientRect();
+            
+            // Calcula onde o mouse está (em pixels)
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            // Transforma a posição em porcentagem (de 0 a 100%)
+            const xPercent = (x / rect.width) * 100;
+            const yPercent = (y / rect.height) * 100;
+
+            // Joga a foto atual pro fundo da lupa e aplica 2.5x de Zoom!
+            resultZoom.style.backgroundImage = `url(${imgZoom.src})`;
+            resultZoom.style.backgroundSize = `${rect.width * 2.5}px ${rect.height * 2.5}px`;
+            
+            // Move o fundo exatamente na mesma proporção do mouse
+            resultZoom.style.backgroundPosition = `${xPercent}% ${yPercent}%`;
+        });
+
+        // Quando o mouse sai da área, a lupa some
+        containerZoom.addEventListener('mouseleave', function() {
+            resultZoom.style.display = 'none';
+        });
+    }
 });

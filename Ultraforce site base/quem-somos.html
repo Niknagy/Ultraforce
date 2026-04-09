@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página não encontrada | UltraForce</title>
+    <title>Quem Somos | UltraForce</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<a href="#main-content" class="skip-link">Ir para o conteúdo principal</a>
+
     <header class="main-header sticky-header">
         <div class="container header-grid">
-             <div class="logo">
+            <div class="logo">
                 
                 <a href="index.html" aria-label="ULTRAFORCE Suplementos - Página Inicial">
                     
@@ -44,10 +46,14 @@
                     BUSCAR
                 </button>
             </form>
+
             <div class="user-actions">
                 <a href="login.html" class="account-link">
                     <svg class="icon-svg" aria-hidden="true" width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                    <div class="text"><small>Bem-vindo(a)</small><strong>Entrar/Cadastrar</strong></div>
+                    <div class="text">
+                        <small>Bem-vindo(a)</small>
+                        <strong>Entrar/Cadastrar</strong>
+                    </div>
                 </a>
                 <a href="carrinho.html" class="btn-cart">
                     <svg class="icon-svg" aria-hidden="true" width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
@@ -57,24 +63,78 @@
         </div>
     </header>
 
-    <main class="container page-spacing" style="display: flex; justify-content: center; align-items: center; min-height: 60vh;">
-        <div class="auth-container" style="text-align: center;">
-            <h1 style="color: var(--primary-color); font-size: 6rem; margin-bottom: 10px;">404</h1>
-            <h2>Página não encontrada</h2>
-            <p style="color: var(--text-muted); margin: 20px 0;">O link que você acessou pode estar quebrado ou a página foi removida.</p>
-            <a href="index.html" class="btn-buy" style="display: inline-block; max-width: 300px;">VOLTAR PARA A LOJA</a>
+    <main id="main-content">
+        <section class="hero-banner" style="padding: 0;">
+            <div class="banner-placeholder" style="height: 300px; border-radius: 0; border: none; border-bottom: 2px solid var(--primary-color);">
+                <h1 style="color: var(--primary-color); font-size: 3rem; text-transform: uppercase; font-style: italic; letter-spacing: -1px;">Muito além do suporte.</h1>
+                <p style="font-size: 1.2rem; color: #FFF;">Nós entregamos evolução.</p>
+            </div>
+        </section>
+
+        <div class="container page-spacing">
+            <nav aria-label="Breadcrumb" class="breadcrumb" style="margin-bottom: 40px;">
+                <a href="index.html">Início</a> > <span>Quem Somos</span>
+            </nav>
+
+            <section style="max-width: 800px; margin: 0 auto 60px; text-align: center; line-height: 1.8;">
+                <h2 style="font-size: 2rem; margin-bottom: 20px; color: var(--text-color);">Nascidos para a <span style="color: var(--primary-color);">Alta Performance</span></h2>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">
+                    A UltraForce não é apenas um e-commerce. Somos uma comunidade de pessoas obstinadas por resultados. Entendemos que o seu corpo é o seu maior projeto, e colocar qualquer coisa para dentro dele não é uma opção. Nascemos para quebrar o padrão do mercado e entregar o que há de mais avançado em ciência nutricional diretamente na sua casa.
+                </p>
+            </section>
+
+            <section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 60px;">
+                
+                <div class="checkout-step" style="text-align: center; margin-bottom: 0;">
+                    <div style="font-size: 3rem; margin-bottom: 15px;"><img src="img/missao.png"></div>
+                    <h3 style="color: var(--primary-color); border-bottom: none; padding-bottom: 0; font-size: 1.5rem;">Nossa Missão</h3>
+                    <p style="color: var(--text-muted); line-height: 1.6; margin-top: 15px; text-align: justify;">
+                        Não vendemos potes, entregamos a matéria-prima para a sua melhor versão. Nossa missão é oferecer suplementação de altíssima pureza e qualidade inquestionável, impulsionando sua saúde, seu foco e seu desempenho ao limite.
+                    </p>
+                </div>
+
+                <div class="checkout-step" style="text-align: center; margin-bottom: 0;">
+                    <div style="font-size: 3rem; margin-bottom: 15px;"><img src="img/visao.png"></div>
+                    <h3 style="color: var(--primary-color); border-bottom: none; padding-bottom: 0; font-size: 1.5rem;">Nossa Visão</h3>
+                    <p style="color: var(--text-muted); line-height: 1.6; margin-top: 15px; text-align: justify;">
+                        Dominar o mercado e ditar o padrão; Ser a força número um e a referência absoluta em e-commerce de suplementos esportivos da nossa região até 2030, construindo um império baseado na confiança brutal dos nossos clientes.
+                    </p>
+                </div>
+
+                <div class="checkout-step" style="text-align: center; margin-bottom: 0;">
+                    <div style="font-size: 3rem; margin-bottom: 15px;"><img src="img/valores.png"></div>
+                    <h3 style="color: var(--primary-color); border-bottom: none; padding-bottom: 0; font-size: 1.5rem;">Nossos Valores</h3>
+                    <ul style="color: var(--text-muted); line-height: 1.8; margin-top: 15px; text-align: center; display: inline-block;">
+                        <li><strong style="color: #FFF;">✓ Transparência Blindada:<br></strong> Laudos 100% abertos.</li><br>
+                        <li><strong style="color: #FFF;">✓ Ética Inegociável:<br></strong> O que está no rótulo, está no pote.</li><br>
+                        <li><strong style="color: #FFF;">✓ Foco no Cliente:<br></strong> O seu resultado é o nosso marketing.</li><br>
+                        <li><strong style="color: #FFF;">✓ Qualidade Extrema:<br></strong> Sem atalhos, sem misturas.</li>
+                    </ul>
+                </div>
+
+            </section>
         </div>
     </main>
 
     <footer class="main-footer">
         <div class="container">
             <div class="footer-grid">
-                <div><h4>Institucional</h4><ul><li><a href="quem-somos.html">Quem Somos</a></li></ul></div>
-                <div><h4>Atendimento</h4><p>suporte@ultraforce.com.br</p></div>
+                <div>
+                    <h4>Institucional</h4>
+                    <ul>
+                        <li><a href="quem-somos.html">Quem Somos</a></li>
+                        <li><a href="#">Laudos e Certificados</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Atendimento</h4>
+                    <p>suporte@ultraforce.com.br</p>
+                </div>
             </div>
             <div class="footer-bottom"><p>2026 UltraForce Suplementos. CNPJ: 00.000.000/0001-00</p></div>
         </div>
     </footer>
+
     <script src="script.js"></script>
 </body>
 </html>

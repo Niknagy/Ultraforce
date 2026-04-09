@@ -15,6 +15,18 @@
     --font-base: 16px;
 }
 
+body {
+    --primary-color: #39FF14;  /* Verde Neon */
+    --text-color: #FFFFFF;     /* Branco para o texto */
+}
+
+/* Garante que o SVG tenha um tamanho fixo e proporcional */
+.logo svg {
+    width: 200px; /* Ajuste esse valor para o tamanho ideal do seu cabeçalho */
+    height: auto;
+    display: block; /* Evita bugs de alinhamento */
+}
+
 /* --- MODOS DE ACESSIBILIDADE (W3C / WCAG 2.1 AA) --- */
 body.alto-contraste {
     --bg-color: #000000;
@@ -51,10 +63,21 @@ body.tritanopia {
 /* =========================================
    RESET E BASE
 ========================================= */
+/* =========================================
+   RESET E BASE
+========================================= */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html {
+    font-size: var(--font-base);
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
 body {
@@ -278,7 +301,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
     display: flex; align-items: center; justify-content: center;
     color: var(--text-muted); border-radius: var(--border-radius); text-align: center;
 }
-.secondary-banner-placeholder { height: 150px; }
+.secondary-banner-placeholder { height: 300px; }
 .supplement-boxes-placeholder { height: 300px; }
 
 /* =========================================
@@ -360,6 +383,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
     padding: 30px 25px; min-width: 300px; flex: 1; scroll-snap-align: start;
     position: relative; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     display: flex; flex-direction: column;
+    text-align: left;
 }
 
 .quote-icon { font-size: 4rem; color: #E0E0E0; line-height: 1; font-family: serif; position: absolute; }
@@ -429,7 +453,44 @@ button { font-family: inherit; cursor: pointer; border: none; }
 
 /* Produto Individual */
 .product-details-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin-bottom: 50px; }
-.main-image-placeholder { height: 400px; background-color: var(--surface-color); display: flex; align-items: center; justify-content: center; border-radius: var(--border-radius); border: 1px solid var(--border-color); margin-bottom: 15px; color: var(--text-muted); }
+/* Container da Imagem precisa ser "relative" pra lupa se orientar por ele */
+.main-image-placeholder { 
+    height: 400px; 
+    background-color: var(--surface-color); 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    border-radius: var(--border-radius); 
+    border: 1px solid var(--border-color); 
+    margin-bottom: 15px; 
+    color: var(--text-muted); 
+    position: relative; /* ← Isso é muito importante! */
+}
+
+/* Muda o cursor para uma mira de precisão */
+.main-image-placeholder img { cursor: crosshair; }
+
+/* A JANELA DA LUPA (O Quadradão) */
+.img-zoom-result {
+    position: absolute;
+    top: 0;
+    left: 105%; /* Empurra a lupa pra fora, no lado direito */
+    width: 450px;
+    height: 450px;
+    border: 1px solid var(--primary-color);
+    border-radius: var(--border-radius);
+    background-color: var(--surface-color);
+    background-repeat: no-repeat;
+    display: none; /* Fica invisível até você passar o mouse */
+    z-index: 999;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    pointer-events: none; /* Pra não atrapalhar o clique do mouse */
+}
+
+/* Em telas de celular, desativamos a lupa ao lado pois não tem espaço */
+@media (max-width: 900px) {
+    .img-zoom-result { display: none !important; }
+}
 .thumbnail-list { display: flex; gap: 10px; }
 .thumb { width: 80px; height: 80px; background-color: var(--surface-color); border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; border-radius: var(--border-radius); cursor: pointer; color: var(--text-muted); font-size: 0.8rem; }
 .thumb:hover { border-color: var(--primary-color); }
