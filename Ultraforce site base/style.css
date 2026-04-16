@@ -15,18 +15,6 @@
     --font-base: 16px;
 }
 
-body {
-    --primary-color: #39FF14;  /* Verde Neon */
-    --text-color: #FFFFFF;     /* Branco para o texto */
-}
-
-/* Garante que o SVG tenha um tamanho fixo e proporcional */
-.logo svg {
-    width: 200px; /* Ajuste esse valor para o tamanho ideal do seu cabeçalho */
-    height: auto;
-    display: block; /* Evita bugs de alinhamento */
-}
-
 /* --- MODOS DE ACESSIBILIDADE (W3C / WCAG 2.1 AA) --- */
 body.alto-contraste {
     --bg-color: #000000;
@@ -63,21 +51,10 @@ body.tritanopia {
 /* =========================================
    RESET E BASE
 ========================================= */
-/* =========================================
-   RESET E BASE
-========================================= */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-html {
-    font-size: var(--font-base);
-}
-
-body {
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
 body {
@@ -194,7 +171,16 @@ button { font-family: inherit; cursor: pointer; border: none; }
     letter-spacing: -1px;
 }
 
-/* Ajustes da barra de pesquisa */
+/* Logo SVG inline — tamanho controlado aqui para ser responsivo */
+.logo-svg {
+    height: 90px;
+    width: auto;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .logo-svg { height: 38px; }
+}
 .search-container {
     display: flex;
     width: 100%;
@@ -209,9 +195,8 @@ button { font-family: inherit; cursor: pointer; border: none; }
     background-color: var(--bg-color);
     color: var(--text-color);
     border-radius: var(--border-radius) 0 0 var(--border-radius);
-    outline: none;
     font-size: 1rem;
-    min-width: 0; 
+    min-width: 0;
 }
 
 .search-container input:focus { border-color: var(--primary-color); outline: 3px solid var(--primary-color); outline-offset: 0; }
@@ -301,7 +286,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
     display: flex; align-items: center; justify-content: center;
     color: var(--text-muted); border-radius: var(--border-radius); text-align: center;
 }
-.secondary-banner-placeholder { height: 300px; }
+.secondary-banner-placeholder { height: 150px; }
 .supplement-boxes-placeholder { height: 300px; }
 
 /* =========================================
@@ -383,7 +368,6 @@ button { font-family: inherit; cursor: pointer; border: none; }
     padding: 30px 25px; min-width: 300px; flex: 1; scroll-snap-align: start;
     position: relative; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     display: flex; flex-direction: column;
-    text-align: left;
 }
 
 .quote-icon { font-size: 4rem; color: #E0E0E0; line-height: 1; font-family: serif; position: absolute; }
@@ -453,50 +437,14 @@ button { font-family: inherit; cursor: pointer; border: none; }
 
 /* Produto Individual */
 .product-details-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin-bottom: 50px; }
-/* Container da Imagem precisa ser "relative" pra lupa se orientar por ele */
-.main-image-placeholder { 
-    height: 400px; 
-    background-color: var(--surface-color); 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    border-radius: var(--border-radius); 
-    border: 1px solid var(--border-color); 
-    margin-bottom: 15px; 
-    color: var(--text-muted); 
-    position: relative; /* ← Isso é muito importante! */
-}
-
-/* Muda o cursor para uma mira de precisão */
-.main-image-placeholder img { cursor: crosshair; }
-
-/* A JANELA DA LUPA (O Quadradão) */
-.img-zoom-result {
-    position: absolute;
-    top: 0;
-    left: 105%; /* Empurra a lupa pra fora, no lado direito */
-    width: 450px;
-    height: 450px;
-    border: 1px solid var(--primary-color);
-    border-radius: var(--border-radius);
-    background-color: var(--surface-color);
-    background-repeat: no-repeat;
-    display: none; /* Fica invisível até você passar o mouse */
-    z-index: 999;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-    pointer-events: none; /* Pra não atrapalhar o clique do mouse */
-}
-
-/* Em telas de celular, desativamos a lupa ao lado pois não tem espaço */
-@media (max-width: 900px) {
-    .img-zoom-result { display: none !important; }
-}
+.main-image-placeholder { height: 400px; background-color: var(--surface-color); display: flex; align-items: center; justify-content: center; border-radius: var(--border-radius); border: 1px solid var(--border-color); margin-bottom: 15px; color: var(--text-muted); }
 .thumbnail-list { display: flex; gap: 10px; }
 .thumb { width: 80px; height: 80px; background-color: var(--surface-color); border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; border-radius: var(--border-radius); cursor: pointer; color: var(--text-muted); font-size: 0.8rem; }
 .thumb:hover { border-color: var(--primary-color); }
 
 .product-buy-info h1 { font-size: 1.8rem; margin-bottom: 10px; line-height: 1.2; }
 .price-box { background-color: var(--surface-color); padding: 20px; border-radius: var(--border-radius); margin: 20px 0; border: 1px solid var(--border-color); }
+.old-price { color: var(--text-muted); font-size: 0.9rem; text-decoration: line-through; display: block; margin-bottom: 4px; }
 .pix-text { font-size: 1rem; color: var(--text-color); font-weight: normal; }
 .installments { color: var(--text-muted); font-size: 0.9rem; margin-top: 5px; }
 
@@ -564,3 +512,48 @@ button { font-family: inherit; cursor: pointer; border: none; }
 .btn-calc:hover { background: var(--primary-color); color: #000; }
 .shipping-result { margin-top: 15px; font-size: 0.9rem; display: none; }
 @media (max-width: 768px) { .cart-layout, .checkout-layout { grid-template-columns: 1fr; } }
+
+/* =========================================
+   FORÇAR ACESSIBILIDADE (REM) NOS PRODUTOS E BANNERS
+========================================= */
+.product-title {
+    font-size: 1.1rem;
+}
+
+.price-container .current-price .value {
+    font-size: 1.8rem;
+}
+
+.price-container .current-price .currency,
+.price-container .old-price,
+.installments {
+    font-size: 0.9rem;
+}
+
+.product-badge {
+    font-size: 0.8rem;
+}
+
+.btn-buy, .btn-search, .btn-calc {
+    font-size: 1rem;
+}
+
+.section-header h2 {
+    font-size: 1.8rem;
+}
+
+.search-header h2 {
+    font-size: 1.5rem;
+}
+
+.search-header p, .filter-group label, .filter-group legend {
+    font-size: 1rem;
+}
+
+.secondary-banner-section h2 {
+    font-size: 2.2rem;
+}
+
+.secondary-banner-section p {
+    font-size: 1.1rem;
+}
