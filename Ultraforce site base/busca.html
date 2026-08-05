@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quem Somos | UltraForce</title>
+    <title>Resultados da Busca | UltraForce</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <a href="#main-content" class="skip-link">Ir para o conteúdo principal</a>
-
-    <header class="main-header sticky-header" role="banner">
+<header class="main-header sticky-header" role="banner">
         <div class="container header-grid">
             <div class="logo">
                 
@@ -57,7 +56,7 @@
             </div>
             
             <form action="busca.html" class="search-container" role="search">
-                <input type="text" placeholder="O que você está buscando?" aria-label="Buscar produtos" required>
+                <input type="text" placeholder="O que você está buscando?" aria-label="Buscar produtos" value="Whey" required>
                 <button type="submit" class="btn-search" aria-label="Pesquisar">
                     <svg aria-hidden="true" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
                     BUSCAR
@@ -80,60 +79,53 @@
         </div>
     </header>
 
-    <main id="main-content">
-        <section class="hero-banner" style="padding: 0;">
-            <div class="banner-placeholder" style="height: 300px; border-radius: 0; border: none; border-bottom: 2px solid var(--primary-color);">
-                <h1 style="color: var(--primary-color); font-size: 3rem; text-transform: uppercase; font-style: italic; letter-spacing: -1px;">Muito além do suporte.</h1>
-                <p style="font-size: 1.2rem; color: #FFF;">Nós entregamos evolução.</p>
+    <main id="main-content" class="container page-spacing">
+        <div class="search-header">
+            <h2>Resultados para: <span class="search-term">"Whey"</span></h2>
+            <p>12 produtos encontrados</p>
+        </div>
+
+        <div class="search-layout">
+            <aside class="search-filters" aria-label="Filtros de pesquisa">
+                <h3>Filtros</h3>
+                <div class="filter-group">
+                    <fieldset>
+                        <legend>Categorias</legend>
+                        <label><input type="checkbox"> Whey Protein</label>
+                        <label><input type="checkbox"> Isolados</label>
+                        <label><input type="checkbox"> Concentrados</label>
+                    </fieldset>
+                </div>
+                <div class="filter-group">
+                    <fieldset>
+                        <legend>Faixa de Preço</legend>
+                        <label><input type="radio" name="price"> Até R$ 100</label>
+                        <label><input type="radio" name="price"> R$ 100 a R$ 200</label>
+                    </fieldset>
+                </div>
+            </aside>
+
+            <div class="products-grid" role="list">
+                <article class="product-card">
+                    <div class="product-badge top-seller">Mais Vendido</div>
+                    <a href="produto.html" aria-hidden="true" tabindex="-1">
+                        <div class="product-image"><img src="img/whey.png" alt="Whey Protein Isolado" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                    </a>
+                    <div class="product-info">
+                        <a href="produto.html"><h3 class="product-title">Whey Protein Concentrado 1KG</h3></a>
+                        <div class="price-container">
+                            <div class="current-price">
+                                <span class="currency">R$</span> <span class="value">99,90</span>
+                            </div>
+                        </div>
+                        <a href="produto.html" class="btn-buy" style="display: block; text-align: center; box-sizing: border-box;" aria-label="Ver detalhes do Whey">VER PRODUTO</a>
+                    </div>
+                </article>
             </div>
-        </section>
-
-        <div class="container page-spacing">
-            <nav aria-label="Breadcrumb" class="breadcrumb" style="margin-bottom: 40px;">
-                <a href="index.html">Início</a>  &rsaquo; <span>Quem Somos</span>
-            </nav>
-
-            <section style="max-width: 800px; margin: 0 auto 60px; text-align: center; line-height: 1.8;">
-                <h2 style="font-size: 2rem; margin-bottom: 20px; color: var(--text-color);">Nascidos para a <span style="color: var(--primary-color);">Alta Performance</span></h2>
-                <p style="color: var(--text-muted); font-size: 1.1rem;">
-                    A UltraForce não é apenas um e-commerce. Somos uma comunidade de pessoas obstinadas por resultados. Entendemos que o seu corpo é o seu maior projeto, e colocar qualquer coisa para dentro dele não é uma opção. Nascemos para quebrar o padrão do mercado e entregar o que há de mais avançado em ciência nutricional diretamente na sua casa.
-                </p>
-            </section>
-
-            <section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 60px;">
-                
-                <div class="checkout-step" style="text-align: center; margin-bottom: 0;">
-                    <div style="font-size: 3rem; margin-bottom: 15px;"><img src="img/missao.png"></div>
-                    <h3 style="color: var(--primary-color); border-bottom: none; padding-bottom: 0; font-size: 1.5rem;">Nossa Missão</h3>
-                    <p style="color: var(--text-muted); line-height: 1.6; margin-top: 15px; text-align: justify;">
-                        Não vendemos potes, entregamos a matéria-prima para a sua melhor versão. Nossa missão é oferecer suplementação de altíssima pureza e qualidade inquestionável, impulsionando sua saúde, seu foco e seu desempenho ao limite.
-                    </p>
-                </div>
-
-                <div class="checkout-step" style="text-align: center; margin-bottom: 0;">
-                    <div style="font-size: 3rem; margin-bottom: 15px;"><img src="img/visao.png"></div>
-                    <h3 style="color: var(--primary-color); border-bottom: none; padding-bottom: 0; font-size: 1.5rem;">Nossa Visão</h3>
-                    <p style="color: var(--text-muted); line-height: 1.6; margin-top: 15px; text-align: justify;">
-                        Dominar o mercado e ditar o padrão; Ser a força número um e a referência absoluta em e-commerce de suplementos esportivos da nossa região até 2030, construindo um império baseado na confiança brutal dos nossos clientes.
-                    </p>
-                </div>
-
-                <div class="checkout-step" style="text-align: center; margin-bottom: 0;">
-                    <div style="font-size: 3rem; margin-bottom: 15px;"><img src="img/valores.png"></div>
-                    <h3 style="color: var(--primary-color); border-bottom: none; padding-bottom: 0; font-size: 1.5rem;">Nossos Valores</h3>
-                    <ul style="color: var(--text-muted); line-height: 1.8; margin-top: 15px; text-align: center; display: inline-block;">
-                        <li><strong style="color: #FFF;">✓ Transparência Blindada:<br></strong> Laudos 100% abertos.</li><br>
-                        <li><strong style="color: #FFF;">✓ Ética Inegociável:<br></strong> O que está no rótulo, está no pote.</li><br>
-                        <li><strong style="color: #FFF;">✓ Foco no Cliente:<br></strong> O seu resultado é o nosso marketing.</li><br>
-                        <li><strong style="color: #FFF;">✓ Qualidade Extrema:<br></strong> Sem atalhos, sem misturas.</li>
-                    </ul>
-                </div>
-
-            </section>
         </div>
     </main>
 
-    <footer class="main-footer">
+        <footer class="main-footer">
         <div class="container">
             <div class="footer-grid">
                 <div>
@@ -144,11 +136,21 @@
                     </ul>
                 </div>
                 <div>
+                    <h4>Dúvidas</h4>
+                    <ul>
+                        <li><a href="#">Frete e Entregas</a></li>
+                        <li><a href="#">Trocas e Devoluções</a></li>
+                    </ul>
+                </div>
+                <div>
                     <h4>Atendimento</h4>
+                    <p>Segunda a Sexta - 08h às 18h</p>
                     <p>suporte@ultraforce.com.br</p>
                 </div>
             </div>
-            <div class="footer-bottom"><p>2026 UltraForce Suplementos. CNPJ: 00.000.000/0001-00</p></div>
+            <div class="footer-bottom">
+                <p>2026 UltraForce Suplementos. CNPJ: 00.000.000/0001-00</p>
+            </div>
         </div>
     </footer>
 

@@ -2,35 +2,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // =========================================
     // 1. INJETA A TOP-BAR DE ACESSIBILIDADE EM TODAS AS PÁGINAS
-    // Páginas de auth (login, cadastro, etc.) não recebem a barra
     // =========================================
-    const isAuthPage = document.body.classList.contains('auth-page');
 
-    // Remove qualquer barra que possa ter ficado no HTML antigo para não duplicar
+    // Remove qualquer barra duplicada que possa ter ficado no HTML
     const existingBar = document.querySelector('.top-bar');
-    if (existingBar) {
-        existingBar.remove();
-    }
+    if (existingBar) existingBar.remove();
 
-    if (!isAuthPage) {
-        const topBarHTML = `
-        <div class="top-bar" id="top-bar-acessibilidade">
-            <div class="container top-bar-content">
-                <div class="accessibility-bar" role="toolbar" aria-label="Controles de acessibilidade">
-                    <span style="color: var(--text-muted); font-size: 0.8rem; margin-right: 4px;">Acessibilidade:</span>
-                    <button id="btn-increase-text" aria-label="Aumentar tamanho do texto" aria-pressed="false">A+</button>
-                    <button id="btn-decrease-text" aria-label="Diminuir tamanho do texto" aria-pressed="false">A-</button>
-                    <button id="btn-contrast"      aria-label="Ativar alto contraste"     aria-pressed="false">Alto Contraste</button>
-                    <button id="btn-daltonism"     aria-label="Ativar modo daltonismo"    aria-pressed="false">Daltonismo: Off</button>
+    const topBarHTML = `
+            <div class="top-bar" id="top-bar-acessibilidade">
+                <div class="container top-bar-content">
+                    <div class="accessibility-bar" role="toolbar" aria-label="Controles de acessibilidade">
+                        <span style="color: var(--text-muted); font-size: 0.8rem; margin-right: 4px;">Acessibilidade:</span>
+                        <button id="btn-increase-text" aria-label="Aumentar tamanho do texto" aria-pressed="false">A+</button>
+                        <button id="btn-decrease-text" aria-label="Diminuir tamanho do texto" aria-pressed="false">A-</button>
+                        <button id="btn-contrast"      aria-label="Ativar alto contraste"     aria-pressed="false">Alto Contraste</button>
+                        
+                        <select id="select-daltonism" aria-label="Modo de Daltonismo">
+                            <option value="">Daltonismo: Off</option>
+                            <option value="deuteranopia">Deuteranopia (Verde)</option>
+                            <option value="protanopia">Protanopia (Vermelho)</option>
+                            <option value="tritanopia">Tritanopia (Azul)</option>
+                        </select>
+                    </div>
+                    <div class="shipping-notice" aria-label="Promoção de frete">
+                        <span>Frete Grátis Sul e Sudeste acima de R$&nbsp;199</span>
+                    </div>
                 </div>
-                <div class="shipping-notice" aria-label="Promoção de frete">
-                    <span>Frete Grátis Sul e Sudeste acima de R$&nbsp;199</span>
-                </div>
-            </div>
-        </div>`;
+            </div>`;
 
-        document.body.insertAdjacentHTML('afterbegin', topBarHTML);
-    }
+    document.body.insertAdjacentHTML('afterbegin', topBarHTML);
 
     // =========================================
     // 2. RESTAURA O ESTADO SALVO NO localStorage (persiste entre páginas)
@@ -81,33 +81,26 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    const btnDaltonism   = document.getElementById('btn-daltonism');
-    const daltonismModes = ['deuteranopia', 'protanopia', 'tritanopia'];
-    const daltonismLabels = {
-        '':             'Daltonismo: Off',
-        'deuteranopia': 'Deuteranopia (Verde) ✓',
-        'protanopia':   'Protanopia (Vermelho) ✓',
-        'tritanopia':   'Tritanopia (Azul) ✓'
-    };
+    // =========================================
+    // LÓGICA DO NOVO DROPDOWN DE DALTONISMO
+    // =========================================
+    const selectDaltonism = document.getElementById('select-daltonism');
 
-    function syncDaltonismButton() {
-        if (!btnDaltonism) return;
-        btnDaltonism.setAttribute('aria-pressed', currentDaltonism !== '');
-        btnDaltonism.textContent = daltonismLabels[currentDaltonism] || 'Daltonismo: Off';
-    }
+    if (selectDaltonism) {
+        // Marca a opção correta quando a página carrega
+        selectDaltonism.value = currentDaltonism;
 
-    if (btnDaltonism) {
-        syncDaltonismButton(); 
-        btnDaltonism.addEventListener('click', () => {
+        // Quando o usuário escolhe uma nova opção na caixinha
+        selectDaltonism.addEventListener('change', (e) => {
+            // Remove a classe antiga (se houver)
             if (currentDaltonism) document.body.classList.remove(currentDaltonism);
-
-            const idx = daltonismModes.indexOf(currentDaltonism);
-            const next = (idx + 1) % (daltonismModes.length + 1);
-            currentDaltonism = next < daltonismModes.length ? daltonismModes[next] : '';
-
+            
+            // Pega o valor novo e aplica
+            currentDaltonism = e.target.value;
             if (currentDaltonism) document.body.classList.add(currentDaltonism);
+            
+            // Salva no navegador
             localStorage.setItem('a11y-daltonism', currentDaltonism);
-            syncDaltonismButton();
         });
     }
 
@@ -260,6 +253,55 @@ document.addEventListener("DOMContentLoaded", () => {
                 tabs[ni].focus();
             });
         });
+
+        // =========================================
+    // 10. MELHORIA DE UX: BOTÃO DE LAUDO NO TOPO
+    // =========================================
+    // Faz o botão do topo abrir magicamente a aba de laudos lá embaixo
+    const btnLaudoTop = document.querySelector('.btn-laudo-top');
+    if (btnLaudoTop) {
+        btnLaudoTop.addEventListener('click', (e) => {
+            e.preventDefault(); // Evita o pulo seco na tela
+            
+            const tabLaudos = document.getElementById('tab-laudos');
+            if (tabLaudos) {
+                // 1. Simula o clique na aba de Laudos para ativá-la
+                tabLaudos.click(); 
+                
+                // 2. Desliza a tela suavemente até a aba
+                tabLaudos.scrollIntoView({ behavior: 'smooth', block: 'start' }); 
+            }
+        });
+    }
+
+    // =========================================
+    // 11. GALERIA DE IMAGENS DO PRODUTO
+    // =========================================
+    const mainImage = document.getElementById('imagem-principal');
+    const thumbnails = document.querySelectorAll('.thumb');
+
+    if (mainImage && thumbnails.length > 0) {
+        thumbnails.forEach(thumb => {
+            thumb.addEventListener('click', function() {
+                // 1. Remove a borda verde (ativa) de todas as miniaturas
+                thumbnails.forEach(t => t.style.borderColor = 'var(--border-color)');
+                
+                // 2. Adiciona a borda verde apenas na miniatura clicada
+                this.style.borderColor = 'var(--primary-color)';
+                
+                // 3. Pega o 'src' da imagem menor e joga na imagem principal
+                const clickedImgSrc = this.querySelector('img').src;
+                mainImage.src = clickedImgSrc;
+                
+                // Animação suave (Fade In)
+                mainImage.style.opacity = '0.5';
+                setTimeout(() => {
+                    mainImage.style.opacity = '1';
+                    mainImage.style.transition = 'opacity 0.3s ease-in-out';
+                }, 50);
+            });
+        });
+    }
 
         if (tabs.length > 0) activateTab(tabs[0]);
     }

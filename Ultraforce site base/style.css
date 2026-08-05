@@ -57,6 +57,10 @@ body.tritanopia {
     box-sizing: border-box;
 }
 
+html {
+    font-size: var(--font-base) !important;
+}
+
 body {
     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     background-color: var(--bg-color);
@@ -64,6 +68,7 @@ body {
     font-size: var(--font-base);
     line-height: 1.5;
     transition: background-color 0.3s, color 0.3s;
+    
 }
 
 a { text-decoration: none; color: inherit; }
@@ -125,9 +130,16 @@ button { font-family: inherit; cursor: pointer; border: none; }
     background: transparent;
     color: var(--text-muted);
     border: 1px solid var(--border-color);
-    padding: 2px 8px;
+    padding: 0 10px;
     margin-right: 5px;
     border-radius: var(--border-radius);
+    height: 32px;
+    min-width: 44px; /* WCAG 2.5.5 — touch target mínimo */
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 }
 
 .accessibility-bar button:hover, .accessibility-bar button:focus {
@@ -173,7 +185,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
 
 /* Logo SVG inline — tamanho controlado aqui para ser responsivo */
 .logo-svg {
-    height: 90px;
+    height: 82px;
     width: auto;
     display: block;
 }
@@ -187,6 +199,37 @@ button { font-family: inherit; cursor: pointer; border: none; }
     max-width: 600px;
     margin: 0 auto;
 }
+
+/* =========================================
+       MINIATURIZAÇÃO DA BARRA DE ACESSIBILIDADE 
+    ========================================= */
+    /* Esconde a palavra "Acessibilidade:" para ganhar muito espaço */
+    .accessibility-bar > span {
+        display: none !important;
+    }
+
+    /* Deixa os botões (A+, A-, Contraste) menores */
+    .accessibility-bar button {
+        height: 24px !important;
+        font-size: 0.65rem !important;
+        padding: 0 6px !important;
+    }
+
+    /* Deixa a caixa de Daltonismo fininha e limita a largura */
+    #select-daltonism {
+        height: 24px !important;
+        font-size: 0.65rem !important;
+        padding: 0 2px !important;
+        max-width: 115px !important; /* Impede ela de empurrar os outros botões */
+    }
+    
+    /* Garante que tudo fique em uma linha só, sem quebrar */
+    .accessibility-bar {
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        padding: 5px 2px !important;
+        gap: 4px !important;
+    }
 
 .search-container input {
     width: 100%;
@@ -343,8 +386,11 @@ button { font-family: inherit; cursor: pointer; border: none; }
 .testimonials-section { margin: 40px 0; }
 .testimonials-bg {
     background-color: #111;
-    background-size: cover; background-position: center; background-attachment: fixed;
-    position: relative; padding: 80px 0;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Desativado no mobile via @media abaixo */
+    position: relative;
+    padding: 80px 0;
 }
 .testimonials-bg::before {
     content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
@@ -488,11 +534,16 @@ button { font-family: inherit; cursor: pointer; border: none; }
     .search-container { max-width: 100%; }
     .user-actions { justify-content: center; flex-wrap: wrap;}
     .top-bar-content { justify-content: center; gap: 10px; }
-    
+
+    /* Carrossel — botões mais próximos em telas pequenas */
     .carousel-btn.prev { left: -10px; }
     .carousel-btn.next { right: -10px; }
     .carousel-track { padding: 10px 20px; }
-    
+
+    /* Fix iOS Safari — background-attachment:fixed quebra no mobile */
+    .testimonials-bg { background-attachment: scroll; }
+
+    /* Busca e produto */
     .search-layout { grid-template-columns: 1fr; }
     .product-details-layout { grid-template-columns: 1fr; gap: 30px; }
     .tech-tabs { flex-wrap: wrap; }
@@ -557,3 +608,171 @@ button { font-family: inherit; cursor: pointer; border: none; }
 .secondary-banner-section p {
     font-size: 1.1rem;
 }
+
+/* =========================================
+   LOGO SVG ESTÁTICO NO HERO BANNER
+========================================= */
+
+/* Posiciona o logo fixo do lado esquerdo do banner */
+.hero-floating-logo {
+    position: absolute;
+    top: 50%; /* Alinha verticalmente pelo meio */
+    left: 8%; /* Ajuste a distância da borda esquerda (8% é um bom respiro) */
+    transform: translateY(-50%); /* Centraliza perfeitamente no eixo Y */
+    width: 250px; /* Tamanho final do logo */
+    max-width: 40%;
+    z-index: 10;
+    pointer-events: none; /* Garante que ele é só visual, sem atrapalhar cliques */
+}
+
+/* Responsividade: Diminui o tamanho do logo no celular para não cobrir a tela */
+@media (max-width: 768px) {
+    .hero-floating-logo {
+        width: 120px;
+        left: 5%; 
+    }
+}
+
+/* =========================================
+   SISTEMA DE BANNERS RESPONSIVOS
+========================================= */
+/* =========================================
+   SISTEMA DE BANNERS RESPONSIVOS
+========================================= */
+.responsive-banner {
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* Voltamos para o cover para preencher a tela toda */
+    border-radius: var(--border-radius);
+    display: block;
+}
+
+/* Tamanhos máximos para PC */
+.hero-img { 
+    max-height: 500px; 
+    object-position: center; 
+}
+
+.promo-img { 
+    max-height: 250px; 
+    object-position: center; /* Garante que o navegador não corte o meio da imagem */
+}
+
+/* Trava global para evitar vazamento horizontal (a barra branca lateral) */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* =========================================
+   MOBILE COMPACTO: LOGO AJUSTADO E SEM SOBREPOSIÇÃO
+========================================= */
+@media (max-width: 768px) {
+    /* Ajuste dos Banners no Celular */
+    .hero-img { max-height: 250px !important; }
+    .promo-img { max-height: 100px !important; }
+    
+    .hero-floating-logo {
+        width: 100px !important;
+        left: 5% !important;
+    }
+
+    /* 1. BARRA DE ACESSIBILIDADE */
+    #top-bar-acessibilidade {
+        display: block !important;
+        position: relative !important;
+        background-color: #000 !important;
+        z-index: 1001;
+    }
+
+    /* 2. HEADER */
+    .main-header.sticky-header {
+        position: sticky !important;
+        top: 0 !important;
+        height: 60px !important;
+        padding: 0 10px !important;
+        background-color: #1A1A1A !important;
+        z-index: 1000;
+        display: flex !important;
+        align-items: center !important;
+    }
+
+    /* 3. LOGO UF */
+    .logo-svg {
+        height: 30px !important;
+        width: auto !important;
+        margin: 0 !important;
+    }
+
+    /* 4. GRID */
+    .header-grid {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        width: 100% !important;
+    }
+
+    /* 5. CATEGORIAS (BARRA VERDE) */
+    .category-nav {
+        height: 40px !important;
+        display: flex !important;
+        align-items: center !important;
+        overflow-x: auto;
+    }
+
+    .category-nav ul {
+        display: flex !important;
+        padding: 0 10px !important;
+        gap: 5px !important;
+    }
+
+    .category-nav a {
+        padding: 8px 12px !important;
+        font-size: 0.75rem !important;
+    }
+
+    /* 6. ICONES */
+    .icon-svg {
+        width: 24px !important;
+        height: 24px !important;
+    }
+
+    .user-actions {
+        gap: 15px !important;
+    }
+
+    .account-link .text, .search-container {
+        display: none !important;
+    }
+
+    /* 7. RESET DE BODY */
+    body {
+        padding-top: 0 !important;
+    }
+}
+
+/* Estilo do Dropdown de Daltonismo */
+#select-daltonism {
+    background-color: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 0 5px;
+    height: 26px;
+    font-size: 0.75rem;
+    outline: none;
+    cursor: pointer;
+}
+
+#select-daltonism:hover, #select-daltonism:focus {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/* Cor de fundo das opções quando a caixa abre */
+#select-daltonism option {
+    background-color: var(--surface-color);
+    color: #FFF;
+}
+
